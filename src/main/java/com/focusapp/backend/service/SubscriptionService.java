@@ -2,6 +2,7 @@ package com.focusapp.backend.service;
 
 import com.focusapp.backend.dto.SubscriptionRequest;
 import com.focusapp.backend.dto.SubscriptionResponse;
+import com.focusapp.backend.exception.ResourceNotFoundException;
 import com.focusapp.backend.model.Subscription;
 import com.focusapp.backend.model.Subscription.SubscriptionStatus;
 import com.focusapp.backend.repository.SubscriptionRepository;
@@ -44,14 +45,14 @@ public class SubscriptionService {
 
     public SubscriptionResponse getUserSubscription(String userId) {
         Subscription subscription = subscriptionRepository.findByUserId(userId)
-                .orElseThrow(() -> new RuntimeException("No subscription found for user: " + userId));
+                .orElseThrow(() -> new ResourceNotFoundException("Subscription", "userId", userId));
         
         return mapToResponse(subscription);
     }
 
     public SubscriptionResponse cancelSubscription(String userId) {
         Subscription subscription = subscriptionRepository.findByUserId(userId)
-                .orElseThrow(() -> new RuntimeException("No subscription found for user: " + userId));
+                .orElseThrow(() -> new ResourceNotFoundException("Subscription", "userId", userId));
         
         subscription.setStatus(SubscriptionStatus.CANCELLED);
         subscription.setAutoRenew(false);

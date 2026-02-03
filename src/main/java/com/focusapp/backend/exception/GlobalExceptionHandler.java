@@ -26,10 +26,23 @@ public class GlobalExceptionHandler {
                 LocalDateTime.now(),
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),
-                ex.getMessage(),
+                "An internal error occurred. Please try again later.",
                 request.getRequestURI()
         );
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleResourceNotFoundException(ResourceNotFoundException ex, HttpServletRequest request) {
+        log.error("Resource not found: ", ex);
+        ErrorResponse errorResponse = new ErrorResponse(
+                LocalDateTime.now(),
+                HttpStatus.NOT_FOUND.value(),
+                HttpStatus.NOT_FOUND.getReasonPhrase(),
+                ex.getMessage(),
+                request.getRequestURI()
+        );
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
     @ExceptionHandler(UsernameNotFoundException.class)
@@ -39,7 +52,7 @@ public class GlobalExceptionHandler {
                 LocalDateTime.now(),
                 HttpStatus.NOT_FOUND.value(),
                 HttpStatus.NOT_FOUND.getReasonPhrase(),
-                ex.getMessage(),
+                "User not found",
                 request.getRequestURI()
         );
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
@@ -77,7 +90,7 @@ public class GlobalExceptionHandler {
                 LocalDateTime.now(),
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),
-                "An unexpected error occurred",
+                "An unexpected error occurred. Please contact support.",
                 request.getRequestURI()
         );
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);

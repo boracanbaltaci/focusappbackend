@@ -2,6 +2,7 @@ package com.focusapp.backend.service;
 
 import com.focusapp.backend.dto.FocusSessionRequest;
 import com.focusapp.backend.dto.FocusSessionResponse;
+import com.focusapp.backend.exception.ResourceNotFoundException;
 import com.focusapp.backend.model.FocusSession;
 import com.focusapp.backend.repository.FocusSessionRepository;
 import lombok.RequiredArgsConstructor;
@@ -43,10 +44,10 @@ public class FocusSessionService {
 
     public FocusSessionResponse updateSession(String sessionId, String userId, FocusSessionRequest request) {
         FocusSession session = focusSessionRepository.findById(sessionId)
-                .orElseThrow(() -> new RuntimeException("Focus session not found with id: " + sessionId));
+                .orElseThrow(() -> new ResourceNotFoundException("Focus session", "id", sessionId));
         
         if (!session.getUserId().equals(userId)) {
-            throw new RuntimeException("User does not have permission to update this session");
+            throw new ResourceNotFoundException("Focus session for this user", "id", sessionId);
         }
         
         session.setTitle(request.getTitle());
@@ -68,10 +69,10 @@ public class FocusSessionService {
 
     public FocusSessionResponse completeSession(String sessionId, String userId) {
         FocusSession session = focusSessionRepository.findById(sessionId)
-                .orElseThrow(() -> new RuntimeException("Focus session not found with id: " + sessionId));
+                .orElseThrow(() -> new ResourceNotFoundException("Focus session", "id", sessionId));
         
         if (!session.getUserId().equals(userId)) {
-            throw new RuntimeException("User does not have permission to complete this session");
+            throw new ResourceNotFoundException("Focus session for this user", "id", sessionId);
         }
         
         session.setCompleted(true);
@@ -105,10 +106,10 @@ public class FocusSessionService {
 
     public FocusSessionResponse getSessionById(String sessionId, String userId) {
         FocusSession session = focusSessionRepository.findById(sessionId)
-                .orElseThrow(() -> new RuntimeException("Focus session not found with id: " + sessionId));
+                .orElseThrow(() -> new ResourceNotFoundException("Focus session", "id", sessionId));
         
         if (!session.getUserId().equals(userId)) {
-            throw new RuntimeException("User does not have permission to view this session");
+            throw new ResourceNotFoundException("Focus session for this user", "id", sessionId);
         }
         
         return mapToResponse(session);
@@ -116,10 +117,10 @@ public class FocusSessionService {
 
     public void deleteSession(String sessionId, String userId) {
         FocusSession session = focusSessionRepository.findById(sessionId)
-                .orElseThrow(() -> new RuntimeException("Focus session not found with id: " + sessionId));
+                .orElseThrow(() -> new ResourceNotFoundException("Focus session", "id", sessionId));
         
         if (!session.getUserId().equals(userId)) {
-            throw new RuntimeException("User does not have permission to delete this session");
+            throw new ResourceNotFoundException("Focus session for this user", "id", sessionId);
         }
         
         focusSessionRepository.delete(session);
