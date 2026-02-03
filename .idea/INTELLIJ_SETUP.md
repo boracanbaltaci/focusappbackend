@@ -168,6 +168,22 @@ The compiled classes should be in `target/classes/` directory. If this directory
 2. **Check connection**: Try connecting with MongoDB Compass or mongosh
 3. **Verify environment variables** in run configuration
 
+### JWT Configuration Error
+**Error**: `Error creating bean with name 'jwtUtils'` or `Unsatisfied dependency`
+
+This error occurred when `JWT_SECRET` was not set. **This has been fixed!**
+
+The application now includes a default JWT secret for development. However:
+
+⚠️ **For Production**: Always set a secure `JWT_SECRET` environment variable!
+
+Generate a secure secret:
+```bash
+openssl rand -base64 32
+```
+
+See the [JWT Configuration Fix Guide](JWT_CONFIG_FIX.md) for detailed information.
+
 ## Useful Keyboard Shortcuts
 
 - Run: Shift+F10 (Win) / ⌃R (Mac)

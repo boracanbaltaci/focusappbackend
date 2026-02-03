@@ -35,7 +35,15 @@ Build → Clean Project → Build → Rebuild Project
 
 ### Environment Variables (Çevre Değişkenleri)
 
-Uygulamayı çalıştırmadan önce gerekli:
+**Geliştirme için (Development):**
+Uygulama artık varsayılan değerlerle çalışır. Direkt çalıştırabilirsiniz:
+
+```bash
+mvn spring-boot:run
+```
+
+**Üretim için (Production - ÖNEMLİ!):**
+Üretim ortamında mutlaka şunları ayarlayın:
 
 1. Run Configuration dropdown → Edit Configurations
 2. "FocusAppBackendApplication" seçin
@@ -45,6 +53,8 @@ Uygulamayı çalıştırmadan önce gerekli:
    MONGODB_URI=mongodb://localhost:27017
    MONGODB_DATABASE=focusapp
    ```
+
+⚠️ **Güvenlik Uyarısı**: Varsayılan JWT secret sadece geliştirme içindir. Üretimde mutlaka `JWT_SECRET` ayarlayın!
 
 ### MongoDB Başlatma
 
@@ -116,6 +126,18 @@ Başka bir uygulama 8080 portunu kullanıyor:
 #### MongoDB bağlantı hatası
 - MongoDB'nin çalıştığından emin olun: `docker-compose ps`
 - Bağlantıyı test edin: MongoDB Compass ile `mongodb://localhost:27017`
+
+#### "Error creating bean with name 'jwtUtils'" veya JWT Configuration hatası
+Bu hata JWT secret ayarlanmadığında oluşurdu. Artık düzeltildi:
+
+- Uygulama varsayılan bir secret ile çalışır (sadece geliştirme için)
+- Üretim ortamında mutlaka `JWT_SECRET` environment variable ayarlayın
+- Detaylar için: [JWT_CONFIG_FIX.md](JWT_CONFIG_FIX.md)
+
+**Güvenli bir secret oluşturmak için:**
+```bash
+openssl rand -base64 32
+```
 
 ### Daha Fazla Yardım
 

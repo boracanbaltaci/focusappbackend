@@ -49,17 +49,28 @@ The project includes pre-configured IntelliJ run configurations. After cloning:
 **Common Issues:**
 - **Run button disabled**: See [troubleshooting section](.idea/INTELLIJ_SETUP.md#troubleshooting)
 - **ClassNotFoundException**: Project not compiled - see [ClassNotFoundException Fix Guide](.idea/CLASSNOTFOUND_FIX.md)
+- **JWT Configuration Error**: Bean creation fails - see [JWT Configuration Fix Guide](.idea/JWT_CONFIG_FIX.md)
 
 ## Configuration
 
-The application uses environment variables for sensitive configuration. You only need to provide:
+The application uses environment variables for sensitive configuration.
 
 ### Required Environment Variables
 
+**For Development:**
+The application includes default values for quick development setup. You can run it immediately with:
+```bash
+mvn spring-boot:run
+```
+
+**For Production:**
 ```bash
 MONGODB_URI=mongodb://localhost:27017
 MONGODB_DATABASE=focusapp
+JWT_SECRET=your-secure-secret-minimum-256-bits  # REQUIRED in production!
 ```
+
+⚠️ **Security Warning**: The default JWT secret is for development only. Always set `JWT_SECRET` in production!
 
 ### Optional Environment Variables
 
