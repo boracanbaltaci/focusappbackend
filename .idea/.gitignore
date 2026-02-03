@@ -1,0 +1,13 @@
+# Keep only essential shared configuration files
+*
+!runConfigurations/
+!runConfigurations/**
+!compiler.xml
+!encodings.xml
+!misc.xml
+!jarRepositories.xml
+!INTELLIJ_SETUP.md
+!TURKISH_QUICKSTART.md
+!CLASSNOTFOUND_FIX.md
+!JWT_CONFIG_FIX.md
+!.gitignore
