@@ -1,0 +1,8 @@
+# Keep only essential shared configuration files
+*
+!runConfigurations/
+!compiler.xml
+!encodings.xml
+!misc.xml
+!jarRepositories.xml
+!.gitignore
