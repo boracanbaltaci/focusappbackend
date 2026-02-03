@@ -1,8 +1,10 @@
 # Keep only essential shared configuration files
 *
 !runConfigurations/
+!runConfigurations/**
 !compiler.xml
 !encodings.xml
 !misc.xml
 !jarRepositories.xml
+!INTELLIJ_SETUP.md
 !.gitignore
