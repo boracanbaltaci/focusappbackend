@@ -136,6 +136,28 @@ docker-compose up -d
 2. **Invalidate caches**:
    - File → Invalidate Caches / Restart
 
+### ClassNotFoundException: com.focusapp.backend.FocusAppBackendApplication
+This error means the project hasn't been compiled yet. Solutions:
+
+1. **Compile with Maven** (Recommended):
+   ```bash
+   mvn clean compile
+   ```
+   
+2. **Build in IntelliJ**:
+   - Build → Build Project (Ctrl+F9 / ⌘F9)
+   - Or: Build → Rebuild Project
+   
+3. **Check Maven import**:
+   - Right-click `pom.xml` → Maven → Reload Project
+   - View → Tool Windows → Maven → Reload All Maven Projects
+   
+4. **Verify run configuration**:
+   - The run configuration should automatically compile before running
+   - If not, edit the configuration and ensure "Maven compile" is in "Before launch" tasks
+
+The compiled classes should be in `target/classes/` directory. If this directory is missing, the project needs to be built.
+
 ### Lombok not working
 1. **Enable annotation processing**: Settings → Compiler → Annotation Processors
 2. **Install plugin**: Settings → Plugins → Search "Lombok"

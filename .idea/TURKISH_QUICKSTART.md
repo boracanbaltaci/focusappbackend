@@ -82,6 +82,27 @@ Tarayıcınızda şu adresi açın:
 
 ### Sık Karşılaşılan Hatalar
 
+#### "ClassNotFoundException: com.focusapp.backend.FocusAppBackendApplication"
+Bu hata, projenin derlenmediği (compile edilmediği) anlamına gelir. Çözümler:
+
+1. **Maven ile derleyin** (Önerilen):
+   ```bash
+   mvn clean compile
+   ```
+   
+2. **IntelliJ'de build edin**:
+   - Build → Build Project (Ctrl+F9)
+   - Veya: Build → Rebuild Project
+   
+3. **Maven'i yeniden yükleyin**:
+   - `pom.xml` dosyasına sağ tık → Maven → Reload Project
+   
+4. **Run configuration'ı kontrol edin**:
+   - Çalıştırmadan önce otomatik olarak derleme yapmalı
+   - Yapmazsa, configuration'ı düzenleyin ve "Before launch" görevlerine "Maven compile" ekleyin
+
+Derlenmiş sınıflar `target/classes/` dizininde olmalıdır. Bu dizin yoksa, proje build edilmelidir.
+
 #### "Cannot resolve symbol 'lombok'"
 - Settings → Plugins → Lombok yükleyin
 - Settings → Annotation Processors → Enable işaretleyin

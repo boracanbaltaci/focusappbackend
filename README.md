@@ -42,10 +42,13 @@ For IntelliJ IDEA users experiencing issues with the run button being disabled, 
 The project includes pre-configured IntelliJ run configurations. After cloning:
 1. Open the project in IntelliJ IDEA
 2. Wait for Maven to import dependencies
-3. The "FocusAppBackendApplication" run configuration should appear in the dropdown
-4. Click the green Run button ▶️
+3. **Compile the project**: `mvn clean compile` or Build → Build Project
+4. The "FocusAppBackendApplication" run configuration should appear in the dropdown
+5. Click the green Run button ▶️
 
-If the run button is still disabled, please refer to the [troubleshooting section](.idea/INTELLIJ_SETUP.md#troubleshooting) in the setup guide.
+**Common Issues:**
+- **Run button disabled**: See [troubleshooting section](.idea/INTELLIJ_SETUP.md#troubleshooting)
+- **ClassNotFoundException**: Project not compiled - see [ClassNotFoundException Fix Guide](.idea/CLASSNOTFOUND_FIX.md)
 
 ## Configuration
 
