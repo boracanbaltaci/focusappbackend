@@ -2,6 +2,8 @@
 
 A professional Spring Boot backend application for a focus time tracking application with subscription management system. Built with Java 17, MongoDB, and includes Swagger API documentation.
 
+> **🇹🇷 Türkçe Not**: IntelliJ IDEA'da run butonu devre dışı görünüyorsa, [IntelliJ Kurulum Rehberi](.idea/INTELLIJ_SETUP.md) sayfasına bakın. Proje hazır run konfigürasyonları ile gelir.
+
 ## Features
 
 - ✅ **User Authentication & Authorization** - JWT-based authentication with Spring Security
@@ -28,6 +30,22 @@ A professional Spring Boot backend application for a focus time tracking applica
 - Java 17 or higher
 - Maven 3.6 or higher
 - MongoDB instance (local or cloud)
+- (Optional) IntelliJ IDEA for development
+
+## IDE Setup
+
+### IntelliJ IDEA Setup
+For IntelliJ IDEA users experiencing issues with the run button being disabled, see the comprehensive setup guide:
+
+📖 **[IntelliJ IDEA Setup Guide](.idea/INTELLIJ_SETUP.md)** (Turkish: IntelliJ'de run butonu sorunlarının çözümü)
+
+The project includes pre-configured IntelliJ run configurations. After cloning:
+1. Open the project in IntelliJ IDEA
+2. Wait for Maven to import dependencies
+3. The "FocusAppBackendApplication" run configuration should appear in the dropdown
+4. Click the green Run button ▶️
+
+If the run button is still disabled, please refer to the [troubleshooting section](.idea/INTELLIJ_SETUP.md#troubleshooting) in the setup guide.
 
 ## Configuration
 
