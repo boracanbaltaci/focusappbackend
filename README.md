@@ -59,13 +59,22 @@ cd focusappbackend
 
 ### 2. Set up MongoDB
 
-Option A - Local MongoDB:
+Option A - Docker Compose (Recommended):
+```bash
+# Start MongoDB and Mongo Express (database UI)
+docker-compose up -d
+
+# MongoDB will be available at: mongodb://admin:admin123@localhost:27017
+# Mongo Express UI at: http://localhost:8081 (admin/admin123)
+```
+
+Option B - Local MongoDB:
 ```bash
 # Install and start MongoDB locally
 mongod
 ```
 
-Option B - MongoDB Atlas (Cloud):
+Option C - MongoDB Atlas (Cloud):
 ```bash
 # Sign up at https://www.mongodb.com/cloud/atlas
 # Create a cluster and get your connection string
@@ -73,19 +82,36 @@ export MONGODB_URI="mongodb+srv://username:password@cluster.mongodb.net"
 export MONGODB_DATABASE="focusapp"
 ```
 
-### 3. Build the application
+### 3. Configure environment (Optional)
+
+```bash
+# Copy example environment file
+cp .env.example .env
+
+# Edit .env with your settings
+nano .env
+```
+
+### 4. Build the application
 
 ```bash
 mvn clean install
 ```
 
-### 4. Run the application
+### 5. Run the application
 
+Option A - Using the startup script:
 ```bash
-# Using Maven
-mvn spring-boot:run
+./start.sh
+```
 
-# Or using java -jar
+Option B - Using Maven:
+```bash
+mvn spring-boot:run
+```
+
+Option C - Using java -jar:
+```bash
 java -jar target/focus-backend-1.0.0.jar
 ```
 
